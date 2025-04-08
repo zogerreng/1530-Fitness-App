@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #f8fff8, #e6ffee);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dashboard-header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #2e8b57;
+  }
+  
+  .dashboard-header p {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    width: 90%;
+    max-width: 800px;
+    padding: 2rem;
+    justify-items: center;
+  }
+  
+  .feature-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    height: 150px;
+    background-color: #3cb371;
+    color: white;
+    text-decoration: none;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    text-wrap: wrap;
+    padding: 1rem;
+  }
+  
+  .feature-button:hover {
+    background-color: #2e8b57;
+    transform: translateY(-5px);
+  }
+  
