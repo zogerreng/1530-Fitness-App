@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from user_model import Base, User
 
 app = Flask(__name__)
+app.secret_key = "pass"
 engine = create_engine("sqlite:///users.db", echo=True)
 Base.metadata.create_all(bind=engine)
 Session = sessionmaker(bind=engine)
@@ -33,7 +34,7 @@ def login():
 def dashboard():
     return render_template("dashboard.html", calorie_calculator_reference=url_for("calculator"))
 
-@app.route("/calore-calculator", methods=["GET"])
+@app.route("/calorie-calculator", methods=["GET"])
 def calculator():
     return render_template("calorie-calculator.html")
 
