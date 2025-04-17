@@ -15,26 +15,6 @@ class User(Base):
         return {"id":self.id,
             "username": self.username,
             "password" : self.password}
-    
-class Food(Base): 
-    __tablename__ = 'Foods'
-
-    id = Column("id", Integer, primary_key=True, autoincrement=True)
-    name = Column(String, nullable=False) 
-    calories_per_serving = Column(Float) 
-    protein_per_serving = Column(Float) # in grams
-    fat_per_serving = Column(Float) # in grams
-    serving_size = Column(String)  # in ounces
-
-
-
-class Meal(Base):
-    __tablename__ = 'Meals'
-
-    id = Column("id", Integer, primary_key=True, autoincrement=True)
-    date = date = Column(Date, default=datetime.date.today)
-    meal_type = Column(String) # breakast, lunch, dinner, snack
-    calories = Column(Float) 
 
 
 

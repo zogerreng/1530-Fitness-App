@@ -38,5 +38,9 @@ def dashboard():
 def calculator():
     return render_template("calorie-calculator.html")
 
+@app.route("/workout-tracker", methods=["GET"])
+def workout():
+    return render_template("workout-tracker.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
