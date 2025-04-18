@@ -32,7 +32,7 @@ def login():
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
-    return render_template("dashboard.html", calorie_calculator_reference=url_for("calculator"))
+    return render_template("dashboard.html", calorie_calculator_reference=url_for("calculator"), workout_tracker_reference=url_for("workout"))
 
 @app.route("/calorie-calculator", methods=["GET"])
 def calculator():

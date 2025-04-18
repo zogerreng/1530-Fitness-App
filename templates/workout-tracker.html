@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/workout-tracker.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/workout-tracker.css') }}">
     <title>Workout Tracker</title>
 </head>
 <body>
@@ -14,11 +14,11 @@
         <br><br>
     
         <label for="repetitions">Repetitions:</label>
-        <input type="number" id="duration" required>
+        <input type="number" id="repetitions" required>
         <br><br>
 
         <label for="weight">Amount of weight:</label>
-        <input type="number" id="duration" required>
+        <input type="number" id="weight" required>
         <br><br>
     
         <label for="intensity">Intensity:</label>
