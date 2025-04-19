@@ -30,7 +30,7 @@ CoreConnect is a comprehensive fitness application designed to help users monito
 2. **Create a virtual environment (needs to be done only once):**
    ```bash
    In Mac OS:      source venv/bin/activate
-    * In Windows:     .\venv\Scripts\activate 
+   In Windows:     .\venv\Scripts\activate 
 
 3. **Install dependencies:**
    ```bash
