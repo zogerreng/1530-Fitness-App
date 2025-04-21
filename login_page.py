@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, jsonify, redirect, flash
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from user_model import Base, User
+from models.user_model import Base, User
 
 app = Flask(__name__)
 app.secret_key = "pass"
