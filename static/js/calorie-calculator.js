@@ -1,3 +1,5 @@
+//Calories Calculator is part of tracker
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("calorieForm");
     const result = document.getElementById("result");
