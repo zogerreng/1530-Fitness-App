@@ -15,10 +15,9 @@ class Workout(Base):
     __tablename__ = 'Workouts'
 
     id = Column('id', Integer, primary_key=True, autoincrement=True)
-    name = Column(String, nullable=False)
-    date = Column(Date, default=datetime.date.today)
+    date = Column(Date, nullable=False, default=datetime.date.today)
 
-    exercises = relationship('Exercise', secondary=workout_exercise_table, back_populates='Workouts')
+    exercises = relationship('Exercise', secondary=workout_exercise_table, back_populates='workouts')
 
 class Exercise(Base):
     __tablename__ = 'Exercises'
@@ -29,7 +28,14 @@ class Exercise(Base):
     weight = Column(Float, nullable=False)
     intensity = Column(String, nullable=False)
 
-    workouts = relationship('Workout', secondary=workout_exercise_table, back_populates='Exercises')
+    workouts = relationship('Workout', secondary=workout_exercise_table, back_populates='exercises')
+
+    def toJSON(self):
+        return {"id":self.id,
+            "name": self.name,
+            "repetitions": self.repetitions,
+            "weight": self.weight,
+            "intensity": self.intensity}
 
 
 
