@@ -61,3 +61,9 @@ Pull requests are welcome! To contribute:
    - Make your changes
 
    - Submit a pull request
+
+## Testing 
+   - Run App from terminal
+   - on a different terminal envoke selinium web testing by
+   ```bash
+      python -m unittest tests/test_calorie_calculator.py
