@@ -1,15 +1,61 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/progress-tracker.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/progress-tracker.css') }}">
     <title>CoreConnect Progress Tracker</title>
 </head>
 <body>
+    <a href="{{ url_for('dashboard') }}" class="back-button">← Back to Dashboard</a>
     <h1>Progress Tracker</h1>
     <ul id="user_workouts">
-        
     </ul>
+
+    <script>
+        fetch('/api/workouts')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('user_workouts');
+                container.innerHTML = '';
+
+                if (data.length === 0) {
+                    container.innerHTML = '<li>No workouts logged yet.</li>';
+                    return;
+                }
+
+                data.forEach(workout => {
+                    const workoutItem = document.createElement('li');
+                    workoutItem.className = 'workout-item';
+
+                    const dateLabel = document.createElement('div');
+                    dateLabel.className = 'workout-date';
+                    dateLabel.textContent = `Workout Date: ${workout.date}`;
+                    workoutItem.appendChild(dateLabel);
+
+                    const exerciseContainer = document.createElement('div');
+                    exerciseContainer.className = 'exercise-container';
+
+                    workout.exercises.forEach(ex => {
+                        const card = document.createElement('div');
+                        card.className = 'exercise-card';
+                        card.innerHTML = `
+                            <h4>${ex.name}</h4>
+                            <p>Reps: ${ex.repetitions}</p>
+                            <p>Weight: ${ex.weight} lbs</p>
+                            <p>Intensity: ${ex.intensity}</p>
+                        `;
+                        exerciseContainer.appendChild(card);
+                    });
+
+                    workoutItem.appendChild(exerciseContainer);
+                    container.appendChild(workoutItem);
+                });
+            })
+            .catch(error => {
+                console.error('Failed to fetch workouts:', error);
+                document.getElementById('user_workouts').innerHTML = '<li>Error loading workouts.</li>';
+            });
+    </script>
 </body>
 </html>

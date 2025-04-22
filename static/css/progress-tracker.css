@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #f8fff8, #e6ffee);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  h1 {
+    color: #2e8b57;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+  }
+  
+  ul#user_workouts {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 900px;
+  }
+  
+  li.workout-item {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .workout-date {
+    font-weight: bold;
+    color: #2e8b57;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .exercise-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .exercise-card {
+    background-color: #fefefe;
+    border: 1px solid #cce5cc;
+    border-radius: 0.8rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 200px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+  }
+  
+  .exercise-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .exercise-card h4 {
+    margin-top: 0;
+    color: #2e8b57;
+    font-size: 1.1rem;
+  }
+  
+  .exercise-card p {
+    margin: 0.3rem 0;
+    color: #333;
+    font-size: 0.95rem;
+  }
+
+  .back-button {
+    align-self: flex-start;
+    margin-bottom: 1rem;
+    background-color: #3cb371;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .back-button:hover {
+    background-color: #2e8b57;
+    transform: translateY(-2px);
+  }
+  

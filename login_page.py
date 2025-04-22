@@ -34,7 +34,7 @@ def login():
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
-    return render_template("dashboard.html", calorie_calculator_reference=url_for("calculator"), workout_tracker_reference=url_for("workout"))
+    return render_template("dashboard.html", calorie_calculator_reference=url_for("calculator"), workout_tracker_reference=url_for("workout"), progress_tracker_reference=url_for("progress_tracker"))
 
 @app.route("/calorie-calculator", methods=["GET"])
 def calculator():
@@ -69,6 +69,17 @@ def workout():
 
 
     return render_template("workout-tracker.html")
+
+@app.route("/progress-tracker", methods=["GET"])
+def progress_tracker():
+    print("Navigating to progress tracker page")
+    return render_template("progress-tracker.html")
+
+@app.route("/api/workouts", methods=["GET"])
+def get_workouts():
+    workouts = session.query(Workout).order_by(Workout.date.desc()).all()
+    return jsonify([w.to_dict() for w in workouts])
+
 
 if __name__ == "__main__":
     app.run(debug=True)
