@@ -29,10 +29,15 @@ CoreConnect is a comprehensive fitness application designed to help users monito
 
 2. **Create a virtual environment (needs to be done only once):**
    ```bash
+   python -m venv venv
+
+
+3. **Activate virtual environment:**
+   ```bash
    In Mac OS:      source venv/bin/activate
    In Windows:     .\venv\Scripts\activate 
 
-3. **Install dependencies:**
+4. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    
@@ -43,6 +48,13 @@ CoreConnect is a comprehensive fitness application designed to help users monito
 4. **Copy and paste the link they give into a browser:**
    ```bash
    ex. http://127.0.0.1:5000
+
+5. **To login, use any of these usernames with the password "pass":
+   - nico
+   - devansh
+   - roger
+   - michael
+   - maggie
 
 ##  Technologies Used
    - Frontend: HTML, CSS, JavaScript
