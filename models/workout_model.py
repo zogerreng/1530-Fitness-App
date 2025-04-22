@@ -4,7 +4,6 @@ import datetime
 
 Base = declarative_base()
 
-# Association table for many-to-many relationship
 workout_exercise_table = Table(
     'workout_exercise',
     Base.metadata,
@@ -47,8 +46,3 @@ class Exercise(Base):
             "intensity": self.intensity
         }
 
-# Example engine and session creation
-# engine = create_engine('sqlite:///workouts.db')
-# Base.metadata.create_all(engine)
-# Session = sessionmaker(bind=engine)
-# session = Session()
