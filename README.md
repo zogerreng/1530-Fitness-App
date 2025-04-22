@@ -31,7 +31,6 @@ CoreConnect is a comprehensive fitness application designed to help users monito
    ```bash
    python -m venv venv
 
-
 3. **Activate virtual environment:**
    ```bash
    In Mac OS:      source venv/bin/activate
@@ -49,7 +48,7 @@ CoreConnect is a comprehensive fitness application designed to help users monito
    ```bash
    ex. http://127.0.0.1:5000
 
-5. **To login, use any of these usernames with the password "pass":
+5. To login, use any of these usernames with the password "pass":
    - nico
    - devansh
    - roger
