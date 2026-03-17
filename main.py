@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, jsonify, redirect, flash, session as flask_session
+from flask import Flask, render_template, url_for, make_response, request, jsonify, redirect, flash, session as flask_session
 from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.orm import sessionmaker
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -124,6 +124,17 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated
 
+
+def nocache(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        response = make_response(f(*args, **kwargs))
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        return response
+    return decorated
+
+
 def current_user_id():
     return flask_session["user_id"]
 
@@ -206,6 +217,7 @@ def logout():
 
 @app.route("/dashboard", methods=["GET"])
 @login_required
+@nocache
 def dashboard():
     return render_template(
         "dashboard.html",
@@ -218,18 +230,21 @@ def dashboard():
 
 @app.route("/calorie-calculator", methods=["GET"])
 @login_required
+@nocache
 def calculator():
     return render_template("calorie-calculator.html")
 
 
 @app.route("/nutrition-tracker", methods=["GET"])
 @login_required
+@nocache
 def nutrition_tracker():
     return render_template("nutrition-tracker.html")
 
 
 @app.route("/workout-tracker", methods=["GET", "POST"])
 @login_required
+@nocache
 def workout():
     user_id = current_user_id()
 
@@ -266,6 +281,7 @@ def workout():
 
 @app.route("/progress-tracker", methods=["GET"])
 @login_required
+@nocache
 def progress_tracker():
     return render_template("progress-tracker.html")
 
