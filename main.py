@@ -3,15 +3,21 @@ from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.orm import sessionmaker
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+from models.base import Base
+from models.user_model import User
+from models.workout_model import Workout, Exercise
+from models.meal_model import Meal, Food
+from dotenv import load_dotenv
+import os
 import datetime
 import re
 
-from models.user_model import Base as UserBase, User
-from models.workout_model import Base as WorkoutBase, Workout, Exercise
-from models.meal_model import Base as MealBase
-
 app = Flask(__name__)
-app.secret_key = "nicolorenzi"
+load_dotenv()
+
+app.secret_key = os.getenv("SECRET_KEY")
+DEFAULT_EMAILS = os.getenv("DEFAULT_EMAILS", "").split(",")
+DEFAULT_PASSWORD = os.getenv("DEFAULT_PASSWORD")
 
 engine = create_engine("sqlite:///users.db", echo=True)
 
@@ -20,9 +26,6 @@ PASSWORD_REQUIREMENTS = (
     "Passwords must be 8-64 characters long, include at least one uppercase letter, "
     "one lowercase letter, and one special character."
 )
-DEFAULT_EMAILS = [
-    "nico@coreconnect.com",]
-DEFAULT_PASSWORD = "Soccernico9#"
 
 def ensure_users_email_column():
     inspector = inspect(engine)
@@ -56,9 +59,7 @@ def ensure_users_email_column():
 
 ensure_users_email_column()
 
-UserBase.metadata.create_all(bind=engine)
-WorkoutBase.metadata.create_all(bind=engine)
-MealBase.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 def ensure_workout_user_column():
     inspector = inspect(engine)

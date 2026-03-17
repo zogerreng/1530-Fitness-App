@@ -6,59 +6,45 @@
   
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5f5;
-    height: 100vh;
+    background: radial-gradient(circle at top, #f0f8ff, #e6f1ff 50%, #dde7ef);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
-  
+
   .header {
     text-align: center;
     padding: 2rem 1rem 1rem;
-    background: #72c375;
+    background: #0f3d5f;
     color: white;
   }
-  
+
   .header h1 {
     font-size: 2.5rem;
     margin-bottom: 0.3rem;
   }
-  
+
   .header p {
     font-size: 1.2rem;
-    color: #e0ffe9;
+    color: #a6c5e0;
   }
-  
+
   .main-container {
     display: flex;
-    flex: 1;
     justify-content: center;
     align-items: center;
     padding: 2rem;
-  }
-  
-  .image-side {
     flex: 1;
-    max-width: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
-  
-  .image-side img {
-    width: 100%;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  }
-  
+
   .form-side {
-    flex: 1;
-    max-width: 400px;
-    background: white;
-    padding: 3rem 2rem;
-    margin-left: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem 2.5rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 25px 60px rgba(15, 61, 95, 0.15);
+    border: 1px solid rgba(15, 61, 95, 0.1);
   }
   
   .form-side h2 {
@@ -70,28 +56,40 @@
   
   input {
     width: 100%;
-    padding: 0.8rem;
-    margin: 0.5rem 0;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
+    padding: 0.85rem 0.9rem;
+    margin: 0.6rem 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
     font-size: 1rem;
+    background: #f9fbff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #0f3d5f;
+    box-shadow: 0 0 0 3px rgba(15, 61, 95, 0.15);
+    background: #fff;
   }
   
   button {
     width: 100%;
-    padding: 0.8rem;
+    padding: 0.9rem;
     margin-top: 1rem;
-    background-color:  #72c375;
+    background-color: #0f3d5f;
     color: white;
     border: none;
     font-size: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     cursor: pointer;
-    transition: background 0.3s;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    transition: background 0.2s ease, transform 0.2s ease;
   }
-  
+
   button:hover {
-    background-color: #2e8b57;
+    background-color: #0c2a43;
+    transform: translateY(-1px);
   }
   
   .flash-container {

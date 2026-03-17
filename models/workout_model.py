@@ -1,8 +1,7 @@
 from sqlalchemy import Table, Column, String, Integer, Date, Float, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship
+from models.base import Base
 import datetime
-
-Base = declarative_base()
 
 workout_exercise_table = Table(
     'workout_exercise',

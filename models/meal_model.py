@@ -1,8 +1,7 @@
 from sqlalchemy import Table, Column, String, Integer, Date, Float, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship
+from models.base import Base
 import datetime
-
-Base = declarative_base()
 
 meal_food_table = Table(
     'meal_food',
@@ -19,7 +18,7 @@ class Meal(Base):
     meal_type = Column(String) # breakast, lunch, dinner, snack
     calories = Column(Float)
 
-    foods = relationship('Food', secondary=meal_food_table, back_populates='Meals')
+    foods = relationship('Food', secondary=meal_food_table, back_populates='meals')
 
 class Food(Base): 
     __tablename__ = 'Foods'
@@ -31,5 +30,4 @@ class Food(Base):
     fat_per_serving = Column(Float) # in grams
     serving_size = Column(String)  # in ounces
 
-    meals = relationship('Meal', secondary=meal_food_table, back_populates='Foods')
-
+    meals = relationship('Meal', secondary=meal_food_table, back_populates='foods')
