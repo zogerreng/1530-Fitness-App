@@ -1,5 +1,5 @@
-from sqlalchemy import Table, Column, String, Integer, Date, Float, ForeignKey, create_engine
-from sqlalchemy.orm import declarative_base, relationship, sessionmaker
+from sqlalchemy import Table, Column, String, Integer, Date, Float, ForeignKey
+from sqlalchemy.orm import declarative_base, relationship
 import datetime
 
 Base = declarative_base()
@@ -16,6 +16,7 @@ class Workout(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     date = Column(Date, nullable=False, default=datetime.date.today)
+    user_id = Column(Integer, ForeignKey('Users.id'), nullable=False)
 
     exercises = relationship('Exercise', secondary=workout_exercise_table, back_populates='workouts')
 
@@ -45,4 +46,3 @@ class Exercise(Base):
             "weight": self.weight,
             "intensity": self.intensity
         }
-

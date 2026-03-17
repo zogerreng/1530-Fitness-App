@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Date, Float
+from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import declarative_base, relationship
 import datetime
 
@@ -8,14 +8,12 @@ class User(Base):
     __tablename__ = 'Users'
 
     id = Column("id", Integer, primary_key=True, autoincrement=True)
-    username = Column("username", String, nullable=False)
+    email = Column("email", String, nullable=False, unique=True)
     password = Column("password", String, nullable=False)
 
     def toJSON(self):
         return {"id":self.id,
-            "username": self.username,
+            "email": self.email,
             "password" : self.password}
-
-
 
 

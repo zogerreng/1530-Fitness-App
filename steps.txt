@@ -22,11 +22,11 @@
 
 4. Run
 
-    python login_page.py
+    python main.py
 
     OR 
     
-    python3 login_page.py
+    python3 main.py
 
 5. Copy and paste the link they give into a browser
 

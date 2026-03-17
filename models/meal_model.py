@@ -15,7 +15,7 @@ class Meal(Base):
     __tablename__ = 'Meals'
 
     id = Column("id", Integer, primary_key=True, autoincrement=True) 
-    date = date = Column(Date, default=datetime.date.today)
+    date = Column(Date, default=datetime.date.today)
     meal_type = Column(String) # breakast, lunch, dinner, snack
     calories = Column(Float)
 
@@ -32,5 +32,4 @@ class Food(Base):
     serving_size = Column(String)  # in ounces
 
     meals = relationship('Meal', secondary=meal_food_table, back_populates='Foods')
-
 
