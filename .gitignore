@@ -2,3 +2,5 @@ venv/
 users.db
 .env
 __pycache__/
+node_modules/
+static/css/output.css

@@ -2,46 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CoreConnect Register</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0f3d5f',
+          },
+        },
+      },
+    };
+  </script>
 </head>
-<body>
-    <div class="header">
-      <h1>CoreConnect</h1>
-      <p>Start your fitness journey</p>
-    </div>
-
-    <div class="main-container">
-      <div class="form-side">
-        <h2>Create an account</h2>
-        <form action="{{ register_reference }}" method="POST" id="registerForm">
-          <input type="email" id="email" name="email" placeholder="Email address" required />
-          <input type="password" id="password" name="password" placeholder="Password" required />
-          <input
-            type="password"
-            id="confirm_password"
-            name="confirm_password"
-            placeholder="Confirm password"
-            required
-          />
-          <button type="submit">Register</button>
-        </form>
+<body class="min-h-screen bg-slate-950 text-white">
+  <div class="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md space-y-8">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.5em] text-slate-400">CoreConnect</p>
+        <h1 class="mt-4 text-3xl font-semibold text-white">Create your account</h1>
+        <p class="mt-2 text-sm text-slate-400">Get started with personalized fitness, nutrition, and progress tracking.</p>
+      </div>
+      <form class="space-y-6 rounded-3xl bg-white/5 p-8 shadow-2xl backdrop-blur-md border border-white/10" method="POST" action="{{ register_reference }}">
+        <div class="space-y-2">
+          <label class="text-sm font-medium text-slate-200" for="email">Email address</label>
+          <input id="email" name="email" type="email" required placeholder="you@example.com" class="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-base text-white placeholder:text-slate-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30" />
+        </div>
+        <div class="space-y-2">
+          <label class="text-sm font-medium text-slate-200" for="password">Password</label>
+          <input id="password" name="password" type="password" required placeholder="Create a password" class="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-base text-white placeholder:text-slate-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30" />
+        </div>
+        <div class="space-y-2">
+          <label class="text-sm font-medium text-slate-200" for="confirm_password">Confirm password</label>
+          <input id="confirm_password" name="confirm_password" type="password" required placeholder="Confirm your password" class="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-base text-white placeholder:text-slate-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30" />
+        </div>
+        <button type="submit" class="w-full rounded-2xl bg-gradient-to-r from-primary to-[#07619e] px-4 py-3 text-base font-semibold uppercase tracking-wide text-white shadow-lg shadow-primary/40 transition hover:opacity-95">Register</button>
         {% with messages = get_flashed_messages(with_categories=true) %}
           {% if messages %}
-            <div class="flash-container">
+            <div class="space-y-2">
               {% for category, message in messages %}
-                <div class="flash {{ category }}">{{ message }}</div>
+                <p class="rounded-2xl border px-4 py-2 text-sm {% if category == 'danger' %}border-red-400 bg-red-500/10 text-red-200{% elif category == 'warning' %}border-amber-400 bg-amber-500/10 text-amber-200{% elif category == 'info' %}border-sky-400 bg-sky-500/10 text-sky-200{% else %}border-emerald-400 bg-emerald-500/10 text-emerald-200{% endif %}">{{ message }}</p>
               {% endfor %}
             </div>
           {% endif %}
         {% endwith %}
-        <p class="form-hint">{{ password_requirements }}</p>
-        <p class="alt-action">
-          Already have an account?
-          <a href="{{ login_reference }}">Sign in</a>
+        <p class="text-xs text-slate-400">{{ password_requirements }}</p>
+        <p class="text-center text-sm text-slate-400">
+          Already have an account? <a class="font-semibold text-white underline-offset-2 hover:underline" href="{{ login_reference }}">Sign in</a>
         </p>
-      </div>
+      </form>
     </div>
-  </body>
+  </div>
+</body>
 </html>

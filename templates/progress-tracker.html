@@ -1,61 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/progress-tracker.css') }}">
-    <title>CoreConnect Progress Tracker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoreConnect Progress Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#0f3d5f' },
+        },
+      },
+    };
+  </script>
 </head>
-<body>
-    <a href="{{ url_for('dashboard') }}" class="back-button">← Back to Dashboard</a>
-    <h1>Progress Tracker</h1>
-    <ul id="user_workouts">
-    </ul>
+<body class="min-h-screen bg-slate-950 text-white">
+  <div class="min-h-screen bg-slate-900/40">
+    <div class="mx-auto max-w-5xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.6em] text-slate-400">Progress</p>
+          <h1 class="text-3xl font-semibold text-white">Progress Tracker</h1>
+          <p class="text-sm text-slate-300">Review your logged sessions in one elegant timeline.</p>
+        </div>
+        <a href="{{ url_for('dashboard') }}" class="rounded-full border border-white/30 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-white/10">Back to Dashboard</a>
+      </div>
+      <div id="workoutList" class="space-y-4"></div>
+    </div>
+  </div>
+  <script>
+    fetch('/api/workouts')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('workoutList');
+        container.innerHTML = '';
 
-    <script>
-        fetch('/api/workouts')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('user_workouts');
-                container.innerHTML = '';
+        if (data.length === 0) {
+          container.innerHTML = '<div class="rounded-3xl border border-white/10 bg-white/5 p-6 text-center text-sm text-slate-300">No workouts logged yet.</div>';
+          return;
+        }
 
-                if (data.length === 0) {
-                    container.innerHTML = '<li>No workouts logged yet.</li>';
-                    return;
-                }
+        data.forEach(workout => {
+          const workoutCard = document.createElement('div');
+          workoutCard.className = 'rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-6 shadow-2xl shadow-black/40';
 
-                data.forEach(workout => {
-                    const workoutItem = document.createElement('li');
-                    workoutItem.className = 'workout-item';
+          const dateHeading = document.createElement('p');
+          dateHeading.className = 'text-sm text-slate-300';
+          dateHeading.textContent = `Workout Date: ${workout.date}`;
 
-                    const dateLabel = document.createElement('div');
-                    dateLabel.className = 'workout-date';
-                    dateLabel.textContent = `Workout Date: ${workout.date}`;
-                    workoutItem.appendChild(dateLabel);
+          const exerciseContainer = document.createElement('div');
+          exerciseContainer.className = 'mt-4 grid gap-4 lg:grid-cols-2';
 
-                    const exerciseContainer = document.createElement('div');
-                    exerciseContainer.className = 'exercise-container';
+          workout.exercises.forEach(exercise => {
+            const card = document.createElement('div');
+            card.className = 'rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200';
+            card.innerHTML = `
+              <h4 class="text-base font-semibold text-white">${exercise.name}</h4>
+              <p>Reps: ${exercise.repetitions}</p>
+              <p>Weight: ${exercise.weight} lbs</p>
+              <p>Intensity: ${exercise.intensity}</p>
+            `;
+            exerciseContainer.appendChild(card);
+          });
 
-                    workout.exercises.forEach(ex => {
-                        const card = document.createElement('div');
-                        card.className = 'exercise-card';
-                        card.innerHTML = `
-                            <h4>${ex.name}</h4>
-                            <p>Reps: ${ex.repetitions}</p>
-                            <p>Weight: ${ex.weight} lbs</p>
-                            <p>Intensity: ${ex.intensity}</p>
-                        `;
-                        exerciseContainer.appendChild(card);
-                    });
-
-                    workoutItem.appendChild(exerciseContainer);
-                    container.appendChild(workoutItem);
-                });
-            })
-            .catch(error => {
-                console.error('Failed to fetch workouts:', error);
-                document.getElementById('user_workouts').innerHTML = '<li>Error loading workouts.</li>';
-            });
-    </script>
+          workoutCard.appendChild(dateHeading);
+          workoutCard.appendChild(exerciseContainer);
+          container.appendChild(workoutCard);
+        });
+      })
+      .catch(error => {
+        console.error('Failed to fetch workouts:', error);
+        document.getElementById('workoutList').innerHTML = '<div class="rounded-3xl border border-red-400 bg-red-500/10 p-4 text-sm text-red-200">Error loading workouts.</div>';
+      });
+  </script>
 </body>
 </html>

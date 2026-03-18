@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/workout-tracker.css') }}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CoreConnect Workout Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: '#0f3d5f' },
+          },
+        },
+      };
+    </script>
 </head>
-<body>
-    <a href="{{ url_for('dashboard') }}" class="back-button">← Back to Dashboard</a>
-    <h1>Workout Tracker</h1>
-    <form id="workoutForm" method="POST", action="">
-        <label for="exercise">Exercise Name:</label>
-        <input type="text" id="exercise" name="exercise" required>
-        <br><br>
-    
-        <label for="repetitions">Repetitions:</label>
-        <input type="number" id="repetitions" name="repetitions" required>
-        <br><br>
-
-        <label for="weight">Amount of weight:</label>
-        <input type="number" id="weight" name="weight" required>
-        <br><br>
-    
-        <label for="intensity">Intensity:</label>
-        <select id="intensity" name="intensity" required>
-            <option value="low">Low</option>
-            <option value="moderate">Moderate</option>
-            <option value="high">High</option>
-        </select>
-        <br><br>
-    
-    
-        <h2>Workout Intensity Guide</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Intensity</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Low</td>
-                    <td>Light effort, easy to talk while exercising</td>
-                </tr>
-                <tr>
-                    <td>Moderate</td>
-                    <td>Increased heart rate, can talk but not sing</td>
-                </tr>
-                <tr>
-                    <td>High</td>
-                    <td>Very hard effort, difficult to talk</td>
-                </tr>
-            </tbody>
-        </table>
-    
-        <br>
-        <button type="submit">Log Workout</button>
-    </form>
-    
-    <h2 id="workoutResult"></h2>
+<body class="min-h-screen bg-slate-950 text-white">
+  <div class="min-h-screen bg-slate-900/40">
+    <div class="mx-auto max-w-4xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.6em] text-slate-400">Workout</p>
+          <h1 class="mt-2 text-3xl font-semibold text-white">Workout Tracker</h1>
+        </div>
+        <a href="{{ url_for('dashboard') }}" class="rounded-full border border-white/30 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-white/10">Back to Dashboard</a>
+      </div>
+      <div class="grid gap-8 lg:grid-cols-[1.1fr,0.9fr]">
+        <form class="space-y-5 rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-6 shadow-2xl shadow-black/40" method="POST">
+          <label class="space-y-2 text-sm">
+            <span class="text-slate-300">Exercise name</span>
+            <input name="exercise" id="exercise" type="text" required placeholder="e.g. Barbell squat" class="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30" />
+          </label>
+          <div class="grid gap-4 md:grid-cols-2">
+            <label class="space-y-2 text-sm">
+              <span class="text-slate-300">Repetitions</span>
+              <input name="repetitions" id="repetitions" type="number" required class="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            </label>
+            <label class="space-y-2 text-sm">
+              <span class="text-slate-300">Weight (lbs)</span>
+              <input name="weight" id="weight" type="number" required class="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            </label>
+          </div>
+          <label class="space-y-2 text-sm">
+            <span class="text-slate-300">Intensity</span>
+            <select name="intensity" id="intensity" required class="w-full rounded-2xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-white focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30">
+              <option value="low">Low</option>
+              <option value="moderate">Moderate</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+          <button type="submit" class="w-full rounded-2xl bg-gradient-to-r from-primary to-[#07619e] px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:opacity-95">Log Workout</button>
+        </form>
+        <div class="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/40 backdrop-blur">
+          <h2 class="text-lg font-semibold text-white">Intensity Guide</h2>
+          <div class="space-y-3 text-sm text-slate-200">
+            <p><span class="font-semibold text-white">Low</span> — Easy effort; conversation is effortless.</p>
+            <p><span class="font-semibold text-white">Moderate</span> — Noticeable effort; can speak but not sing.</p>
+            <p><span class="font-semibold text-white">High</span> — Hard effort; speech is broken.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
-<html>
+</html>

@@ -1,147 +1,28 @@
+/* Minimal global styles to complement Tailwind */
+:root {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: radial-gradient(circle at top, #f0f8ff, #e6f1ff 50%, #dde7ef);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    padding: 0 1rem;
   }
 
-  .header {
-    text-align: center;
-    padding: 2rem 1rem 1rem;
-    background: #0f3d5f;
-    color: white;
+  form {
+    padding: 1.5rem !important;
   }
+}
 
-  .header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.3rem;
+@media (min-width: 641px) {
+  form {
+    padding: 2.5rem !important;
   }
-
-  .header p {
-    font-size: 1.2rem;
-    color: #a6c5e0;
-  }
-
-  .main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    flex: 1;
-  }
-
-  .form-side {
-    width: 100%;
-    max-width: 420px;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 3rem 2.5rem;
-    border-radius: 1.25rem;
-    box-shadow: 0 25px 60px rgba(15, 61, 95, 0.15);
-    border: 1px solid rgba(15, 61, 95, 0.1);
-  }
-  
-  .form-side h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-    color: #333;
-    text-align: center;
-  }
-  
-  input {
-    width: 100%;
-    padding: 0.85rem 0.9rem;
-    margin: 0.6rem 0;
-    border: 1px solid #cbd5e1;
-    border-radius: 0.75rem;
-    font-size: 1rem;
-    background: #f9fbff;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-
-  input:focus {
-    outline: none;
-    border-color: #0f3d5f;
-    box-shadow: 0 0 0 3px rgba(15, 61, 95, 0.15);
-    background: #fff;
-  }
-  
-  button {
-    width: 100%;
-    padding: 0.9rem;
-    margin-top: 1rem;
-    background-color: #0f3d5f;
-    color: white;
-    border: none;
-    font-size: 1rem;
-    border-radius: 0.75rem;
-    cursor: pointer;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    transition: background 0.2s ease, transform 0.2s ease;
-  }
-
-  button:hover {
-    background-color: #0c2a43;
-    transform: translateY(-1px);
-  }
-  
-  .flash-container {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .flash {
-    padding: 0.6rem 0.8rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    text-align: center;
-  }
-
-  .flash.danger {
-    background: #f8d7da;
-    color: #721c24;
-  }
-
-  .flash.warning {
-    background: #fff3cd;
-    color: #856404;
-  }
-
-  .flash.info {
-    background: #d1ecf1;
-    color: #0c5460;
-  }
-
-  .flash.success {
-    background: #d4edda;
-    color: #155724;
-  }
-
-  .alt-action {
-    margin-top: 1.2rem;
-    text-align: center;
-    font-size: 0.95rem;
-  }
-
-  .alt-action a {
-    color: #2e8b57;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .form-hint {
-    margin-top: 0.5rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #565656;
-  }
-  
+}

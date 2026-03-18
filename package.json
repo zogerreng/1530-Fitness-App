@@ -1,0 +1,18 @@
+{
+  "name": "core_connect",
+  "version": "1.0.0",
+  "description": "CoreConnect is a comprehensive fitness application designed to help users monitor their caloric intake, track workouts, and achieve their health goals efficiently, keeping the user motivated and consistent.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}
